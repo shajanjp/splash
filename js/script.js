@@ -1,12 +1,9 @@
 var container = document.getElementsByTagName("body")[0];
 var exitButton = document.getElementsByClassName("exit")[0];
-var noSleep = new NoSleep();
 console.log('no sleep started');
-function enableNoSleep() {
-  noSleep.enable();
-  document.removeEventListener('touchstart', enableNoSleep, false);
-}
-document.addEventListener('touchstart', enableNoSleep, false);
+
+var noSleep = new NoSleep();
+noSleep.enable(); // keep the screen on!
 
 exitButton.addEventListener('click', () => {
   document.exitFullscreen();
