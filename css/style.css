@@ -23,6 +23,15 @@ body, html {
   height:50%;
 }
 
+.controls{
+
+}
+.add-button{
+  color: white;
+  padding: 20px;
+  background-color: #f00;
+}
+
 @-webkit-keyframes splash {
   0%{background-position: 0% 50%}
   50%{background-position: 100% 50%}
