@@ -4,8 +4,8 @@
 body, html {
   height: 100%;
   overflow-y: hidden;
-  background: linear-gradient(-45deg, red, orange, yellow, green, blue, indigo, violet);
-  background-size: 500% 500%;
+  background: linear-gradient(-45deg, cyan, magenta, yellow);
+  background-size: 500%;
   -webkit-animation: splash 10s ease infinite;
   -moz-animation: splash 10s ease infinite;
   animation: splash 10s ease infinite;
@@ -13,7 +13,7 @@ body, html {
   padding: 10px;
 }
 .wrap {
-  background-color:#000;
+  background-color: #000;
   height: 100%;
   border-radius: 3vh;
 }
