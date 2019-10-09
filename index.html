@@ -2,16 +2,45 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#000"/>
   <title>Ambient Color Spalsh</title>
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" type="text/css" href="css/style.css" media="all">
 </head>
 <body>
   <div class="wrap">
     <div class="exit"></div>
-    <div class="controls"></div>
+    <div class="controls"><div class="add-button">Add Button</div></div>
   </div>
   <script src="./js/NoSleep.min.js"></script>
   <script src="./js/script.js"></script>
+  <script>  
+    if('serviceWorker' in navigator) {
+      navigator.serviceWorker
+      .register('/sw.js')
+      .then(function() { console.log('Service Worker Registered'); });
+    }
+
+    let deferredPrompt;
+    const addBtn = document.querySelector('.add-button');
+
+    window.addEventListener('beforeinstallprompt', (e) => {
+      console.log('in beforeinstallprompt');
+      e.preventDefault();
+      deferredPrompt = e;
+      addBtn.addEventListener('click', (e) => {
+        deferredPrompt.prompt();
+        deferredPrompt.userChoice.then((choiceResult) => {
+          if (choiceResult.outcome === 'accepted') {
+            console.log('User accepted the A2HS prompt');
+          } else {
+            console.log('User dismissed the A2HS prompt');
+          }
+          deferredPrompt = null;
+        });
+      });
+    });
+  </script>
 </body>
 </html>
