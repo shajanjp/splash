@@ -5,9 +5,10 @@ console.log('no sleep started');
 // var noSleep = new NoSleep();
 // noSleep.enable(); // keep the screen on!
 
-// exitButton.addEventListener('click', () => {
-//   document.exitFullscreen();
-// })
+exitButton.addEventListener('click', () => {
+  document.body.requestFullscreen();
+  // document.exitFullscreen();
+})
 
 // container.addEventListener("click", function() {
 //   document.body.requestFullscreen();
