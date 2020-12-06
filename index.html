@@ -9,34 +9,7 @@
   <link rel="stylesheet" type="text/css" href="css/style.css" media="all">
 </head>
 <body>
-  <div class="wrap">
-    <div class="exit"></div>
-    <div class="controls"></div>
-  </div>
-  <script src="./js/NoSleep.min.js"></script>
-  <script src="./js/script.js"></script>
-  <script>  
-    if('serviceWorker' in navigator) {
-      navigator.serviceWorker
-      .register('./sw.js')
-      .then(function() { 
-        console.log('Service Worker Registered'); 
-      });
-    }
-
-    let deferredPrompt;
-    const addBtn = document.querySelector('.controls');
-
-    window.addEventListener('beforeinstallprompt', (e) => {
-      e.preventDefault();
-      deferredPrompt = e;
-      addBtn.addEventListener('click', (e) => {
-        deferredPrompt.prompt();
-        deferredPrompt.userChoice.then((choiceResult) => {
-          deferredPrompt = null;
-        });
-      });
-    });
-  </script>
+  <div class="wrap"></div>
+  <script src="scripts/wakelock.js"></script>
 </body>
 </html>
