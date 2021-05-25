@@ -9,7 +9,20 @@
   <link rel="stylesheet" type="text/css" href="css/style.css" media="all">
 </head>
 <body>
-  <div class="wrap"></div>
-  <script src="scripts/wakelock.js"></script>
+  <div class="wrap">
+    <div class="controls">
+      <div>
+        <p>Radius:</p> 
+        <button id="radius-dec" onclick="changeRadius('-')">-</button>
+        <button id="radius-inc" onclick="changeRadius('+')">+</button>
+      </div>
+      <div>
+        <p>Stroke Size:</p>
+        <button id="stroke-size-dec" onclick="changeStrokeSize('-')">-</button>
+        <button id="stroke-size-inc" onclick="changeStrokeSize('+')">+</button>
+      </div> 
+    </div>
+  </div>
+  <script src="scripts/script.js"></script>
 </body>
 </html>
