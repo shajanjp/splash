@@ -37,8 +37,11 @@ body, html {
   100%{background-position: 0% 50%}
 }
 
-
 .controls {
+  /* background: rgba(255,255,255,0.1);
+  padding: 10px;
+  border-radius: 20px; */
+
   color: #555;
   text-align: center;
 }
