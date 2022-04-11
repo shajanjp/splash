@@ -1,30 +1,49 @@
 const wrapElement = document.getElementsByClassName("wrap")[0];
 const bodyElement = document.getElementsByTagName("body")[0];
+const controlsElement = document.getElementsByClassName('controls')[0];
+const controlsShowTimeout = 3000;
 wrapElement.style.borderRadius = "0px";
 bodyElement.style.padding = "0px";
 
 bodyElement.addEventListener(
   "click",
-  function () {
+  () => {
     document.body.requestFullscreen();
     requestWakeLock();
+    showControlsForNext5Minutes();
   },
   false
 );
 
+controlsElement.addEventListener('click', () => {
+  showControlsForNext5Minutes();
+})
+
+showControlsForNext5Minutes();
+
 const requestWakeLock = () => {
-  if ("wakeLock" in navigator && "request" in navigator.wakeLock) {
+  if (navigator?.wakeLock?.request) {
     try {
       (async () => {
-        wakeLock = await navigator.wakeLock.request();
+        wakeLock = await navigator.wakeLock.request('screen');
       })();
     } catch (err) {
-      alert(`${err.name}, ${err.message}`);
+      alert(`Wakelock request failed.`);
     }
   }
 };
 
+function showControlsForNext5Minutes() {
+  document.getElementsByClassName("controls")[0].style.display = "block";
+
+  setTimeout(() => {
+    document.getElementsByClassName("controls")[0].style.display = "none";
+  }, controlsShowTimeout);
+}
+
 function changeRadius(action) {
+  showControlsForNext5Minutes();
+
   if (action === "-") {
     wrapElement.style.borderRadius = `${
       parseInt(wrapElement.style.borderRadius.split("px")[0]) - 1
@@ -39,6 +58,8 @@ function changeRadius(action) {
 }
 
 function changeStrokeSize(action) {
+  showControlsForNext5Minutes();
+
   if (action === "-") {
     bodyElement.style.padding = `${
       parseInt(bodyElement.style.padding.split("px")[0]) - 1
