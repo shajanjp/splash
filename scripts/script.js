@@ -2,6 +2,8 @@ const wrapElement = document.getElementsByClassName("wrap")[0];
 const bodyElement = document.getElementsByTagName("body")[0];
 const controlsElement = document.getElementsByClassName('controls')[0];
 const controlsShowTimeout = 3000;
+let timeoutHandler = false;
+
 wrapElement.style.borderRadius = "0px";
 bodyElement.style.padding = "0px";
 
@@ -34,10 +36,13 @@ const requestWakeLock = () => {
 };
 
 function showControlsForNext5Minutes() {
-  document.getElementsByClassName("controls")[0].style.display = "block";
+  document.getElementsByClassName("controls")[0].classList.remove("animate__fadeInLeft", "animate__fadeOutRight");
+  document.getElementsByClassName("controls")[0].classList.add("animate__fadeInLeft");
+  
+  clearTimeout(timeoutHandler);
 
-  setTimeout(() => {
-    document.getElementsByClassName("controls")[0].style.display = "none";
+  timeoutHandler = setTimeout(() => {
+    document.getElementsByClassName("controls")[0].classList.add("animate__fadeOutRight");
   }, controlsShowTimeout);
 }
 
